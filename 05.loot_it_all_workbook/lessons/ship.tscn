@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmv50krf4bo5r"]
+[gd_scene load_steps=7 format=3 uid="uid://dmv50krf4bo5r"]
 
 [ext_resource type="Texture2D" uid="uid://bniyrxn3r2v8h" path="res://assets/ship.png" id="3_pdppw"]
 [ext_resource type="Script" path="res://lessons/ship.gd" id="4_p1sls"]
@@ -7,6 +7,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_epiv0"]
 radius = 42.0119
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04w43"]
+bg_color = Color(0.623529, 0.866667, 0.317647, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Ship" type="Area2D"]
 position = Vector2(802, 466)
@@ -29,3 +36,19 @@ rotation = 1.36715
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_epiv0")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="UI"]
+layout_mode = 0
+offset_left = -86.0
+offset_top = -72.0
+offset_right = 97.0
+offset_bottom = -66.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_04w43")
+value = 30.52
+show_percentage = false
