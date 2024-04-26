@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ce3r3pnqmm36f"]
 
-[ext_resource type="PackedScene" path="res://practices/L3.P2.sting_the_balloon/balloon_sting.tscn" id="1_cq1j7"]
+[ext_resource type="PackedScene" uid="uid://dg6rmhh7nwlcm" path="res://practices/L3.P2.sting_the_balloon/balloon_sting.tscn" id="1_cq1j7"]
 
 [node name="StingTheBalloon" type="Node2D"]
 metadata/_edit_horizontal_guides_ = []
