@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://b50m36hpg0e0"]
+
+[ext_resource type="Texture2D" uid="uid://c3hwsm5ugp8qw" path="res://lessons/chest/bottom.png" id="1_3g82n"]
+[ext_resource type="Script" path="res://lessons/chest/chest.gd" id="1_8c20q"]
+[ext_resource type="Shader" path="res://lessons/chest/group_outline.gdshader" id="1_inv0c"]
+[ext_resource type="Texture2D" uid="uid://bnem1cahhoxdk" path="res://lessons/chest/top.png" id="2_pmivn"]
+[ext_resource type="PackedScene" uid="uid://0i1g0cunmseb" path="res://lessons/items/apple.tscn" id="2_xltvd"]
+[ext_resource type="Texture2D" uid="uid://bu2jin246nel5" path="res://lessons/chest/lock.png" id="3_56g0j"]
+[ext_resource type="PackedScene" uid="uid://ctqyr0ufyoktk" path="res://lessons/items/key.tscn" id="3_ijkac"]
+[ext_resource type="PackedScene" uid="uid://hdxqgspfcaur" path="res://lessons/items/potion.tscn" id="4_v00wq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7thf0"]
+size = Vector2(96, 79)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jhooj"]
+resource_local_to_scene = true
+shader = ExtResource("1_inv0c")
+shader_parameter/line_color = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 7.0
+shader_parameter/viewport_scale = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_03kov"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -44)]
+}
+
+[sub_resource type="Animation" id="Animation_eince"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Top:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -44), Vector2(51, -117), Vector2(108, 39)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xw68i"]
+_data = {
+"RESET": SubResource("Animation_03kov"),
+"open": SubResource("Animation_eince")
+}
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_8c20q")
+possible_items = Array[PackedScene]([ExtResource("2_xltvd"), ExtResource("3_ijkac"), ExtResource("4_v00wq")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -35.5)
+shape = SubResource("RectangleShape2D_7thf0")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_jhooj")
+
+[node name="Bottom" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(0, -32)
+texture = ExtResource("1_3g82n")
+
+[node name="Top" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(0, -44)
+rotation = -0.00219136
+texture = ExtResource("2_pmivn")
+
+[node name="Lock" type="Sprite2D" parent="CanvasGroup"]
+position = Vector2(0, -22)
+texture = ExtResource("3_56g0j")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xw68i")
+}
