@@ -73,6 +73,7 @@ texture = ExtResource("1_3g82n")
 
 [node name="Top" type="Sprite2D" parent="CanvasGroup"]
 position = Vector2(0, -44)
+rotation = -0.00219136
 texture = ExtResource("2_pmivn")
 
 [node name="Lock" type="Sprite2D" parent="CanvasGroup"]
